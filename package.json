@@ -1,0 +1,24 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "main": "src/js/index.ts",
+  "scripts": {
+    "build": "parcel src/index.html",
+    "build:prod": "parcel build src/index.html --public-url ./ --no-minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "node-sass": "^4.8.3"
+  },
+  "devDependencies": {
+    "typescript": "^2.8.1"
+  },
+  "repository": { 
+    "type": "git",
+    "url": "https://github.com/MatiasPi/tictactoe.ts.git"
+  }
+}

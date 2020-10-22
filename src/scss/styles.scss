@@ -1,0 +1,230 @@
+$board-width:400px;
+$board-border-width: 1px;
+$board-border-color: rgb(194, 194, 194);
+$filter-transition-s: .2s;
+$ui-border-radius: 7px;
+
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+html{
+    margin:0;
+}
+
+body {
+    font-family: 'Meera Inimai', sans-serif;
+    background: url("../img/bg.jpg");
+    margin:0;
+}
+
+h1{
+    // text-align: center;
+    font-size:3.5rem;
+}
+
+button {
+    cursor: pointer;
+    font: inherit;
+    background: transparent;
+    border: solid 2px rgba(rgb(0, 0, 0),1);
+    &:focus {outline:0;} 
+    border-radius:$ui-border-radius;
+    padding: 10px 15px;
+    max-width:100px;
+    font-size:1.3rem;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.555);
+    box-shadow: rgba(black, .4) 0 0 12px;
+
+    transition: background-color .5s, box-shadow .5s, transform .5s;
+
+    &:hover {
+        transform: scale(1.1,1.1);
+        box-shadow: rgba(black, .2) 0 0 30px;
+    }
+}
+
+#app{
+    max-width: $board-width;
+    margin: auto;
+}
+
+.board{
+    transition: filter $filter-transition-s;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    max-width: $board-width;
+    max-height: $board-width;
+
+    position: relative;
+    
+    // padding-top: 100%; /* 1:1 Aspect Ratio */
+    width: 100vw;
+    height: 100vw;
+    flex-wrap: wrap;
+
+    .cell{
+        width: 33.3333%;
+        height: 33.3333%;
+        border: $board-border-width solid $board-border-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        
+        &.available {
+            cursor: pointer;
+        }
+
+        svg {
+            width:100%;
+            height:100%;
+
+            transition: fill .5s;
+
+            animation: appear .5s cubic-bezier(0.25, 0.1, 0.25, 1) 1 forwards;
+        }
+
+        .circle {
+            width:80%;
+            height:80%;
+        }
+
+        transition: background-color .5s;
+
+        &.highlight{
+
+            background-color: #ffe9e9;
+        
+            svg {
+                fill:#ff7777;
+            }
+        }
+    }
+
+    > *:nth-child(1),
+    > *:nth-child(4),
+    > *:nth-child(7),{
+        border-left: transparent;
+    }
+
+    > *:nth-child(1),
+    > *:nth-child(2),
+    > *:nth-child(3),{
+        border-top: transparent;
+    }
+
+    > *:nth-child(3),
+    > *:nth-child(6),
+    > *:nth-child(9),{
+        border-right: transparent;
+    }
+
+    > *:nth-child(7),
+    > *:nth-child(8),
+    > *:nth-child(9),{
+        border-bottom: transparent;
+    }
+}
+
+.ui-block {
+    
+    background: rgb(250, 250, 250);
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: $ui-border-radius;
+    box-shadow: rgba(black, .1) 0 0 25px;
+}
+
+.bottom-hud{
+    transition: filter $filter-transition-s;
+    width:100%;
+    justify-content: space-around;
+    margin-top: 20px;
+    display:flex;
+    align-items: center;
+
+    .tally{
+        display: flex;
+        flex-direction: column;
+        
+        .number{
+            font-size:2rem;
+            margin-bottom: 5px;
+        }
+        .playerName{
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.popup{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    animation: appearOpacity .5s cubic-bezier(0.25, 0.1, 0.25, 1) 1 forwards;
+
+    p {
+        margin: 10px;
+        font-size: 1.4rem;
+    }
+}
+
+//Start menu
+
+.menu {
+    width:320px;
+    padding:10px;
+
+    button{
+        padding:0 8px;
+        width: 80px;
+        height: 80px;
+    }
+
+    svg {
+        width:100%;
+        height:100%;
+        // transform: scale(1.5,1.)
+    }
+}
+
+.team-selection {
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    max-width: 300px;
+    margin: 25px 0 8px 0;
+}
+
+@keyframes appearOpacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*display flash animation*/
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(1.4,1.4);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+
+.behind {
+    filter: blur(10px);
+    user-select: none;
+    * {
+        cursor: initial;
+    }
+}

@@ -1,0 +1,5 @@
+dist/
+node_modules/
+notes.txt
+.vscode/
+.cache/
